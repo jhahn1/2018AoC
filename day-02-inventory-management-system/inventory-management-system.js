@@ -1,16 +1,25 @@
 const inventoryManagementSystem = (input) => {
     const parsedInput = input.split('\n').map((x) => x.trim());
+    let threeCount = 0;
+    let twoCount = 0;
 
-    var counts = {};
     parsedInput.forEach(function(x) {
+        var counts = {};
         x.split("")
         .forEach( function(i) {
             counts[i] = (counts[i] || 0)+1;
-            console.log("counts = ", counts);
         });
+        
+        if(Object.values(counts).indexOf(2) > -1) {
+            twoCount++;
+        }
+
+        if(Object.values(counts).indexOf(3) > -1) {
+            threeCount++;
+        }
     });
 
-    console.log(parsedInput);
+    return twoCount * threeCount;
 }
 
 module.exports = inventoryManagementSystem;

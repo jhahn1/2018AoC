@@ -22,10 +22,7 @@ const chronalCalibration = (input) => {
             iterator++;
         }
         iterations++;
-        console.log("potential dup = ", potentialDuplicate);
     }
-
-    console.log("potential dup to return = ", potentialDuplicate);
     return potentialDuplicate;
 }
 

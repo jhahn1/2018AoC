@@ -4,16 +4,25 @@ const howYouSliceIt = require('./how-you-slice-it.js');
 const howYouSliceIt2 = require('./how-you-slice-it2.js');
 
 describe('Day 3: How You Slice It', () => {
-    it('should properly find shared square inches of fabric', () => {
-        const claims =
-        `#1 @ 1,3: 4x4
-         #2 @ 3,1: 4x4
-         #3 @ 5,5: 2x2`
+    // it('should properly find shared square inches of fabric', () => {
+    //     const claims =
+    //     `#1 @ 1,3: 4x4
+    //      #2 @ 3,1: 4x4
+    //      #3 @ 5,5: 2x2`
 
-         assert.equal(howYouSliceIt(claims), 4);
-    });
+    //      assert.equal(howYouSliceIt(claims), 4);
+    // });
 
-    it('should properly find shared square inches of fabric real test input', () => {
+    // it('should properly find shared square inches of fabric Part 2', () => {
+    //     const claims =
+    //     `#1 @ 1,3: 4x4
+    //      #2 @ 3,1: 4x4
+    //      #3 @ 5,5: 2x2`
+
+    //      assert.equal(howYouSliceIt2(claims), 3);
+    // });
+
+    it('should properly find shared square inches of fabric real test input Part 2', () => {
         const claims =
         `#1 @ 53,238: 26x24
         #2 @ 134,11: 27x12
@@ -1417,6 +1426,6 @@ describe('Day 3: How You Slice It', () => {
         #1400 @ 505,321: 27x22
         #1401 @ 432,243: 19x17`
 
-         assert.equal(howYouSliceIt(claims), 4);
+         assert.equal(howYouSliceIt2(claims), 4);
     });
 });

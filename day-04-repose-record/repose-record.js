@@ -1,14 +1,19 @@
-var moment = require('moment');
-var _ = require('lodash');
+var moment = require("moment");
+var _ = require("lodash");
 
 const reposeRecord = input => {
-  const parsedInput = input.split("\n")
-  .map(x => x.replace("]", "|")
-  .trim())
-  .map(x => x.split("|")
-  .map(x => x.replace("[", "")));
-  
-  let sortedByDate = _.sortBy(parsedInput, function(o) { return new moment(o[0]); });
+  const parsedInput = input
+    .split("\n")
+    .map(x => x.replace("]", "|").trim())
+    .map(x => x.split("|").map(x => x.replace("[", "")));
+
+  let sortedByDate = _.sortBy(parsedInput, function(o) {
+    return new moment(o[0]);
+  });
+
+  let sortedDated = sortedByDate.forEach(x => {
+    x.split(" ");
+  });
 
   console.log("split input = ", splitInput);
 };

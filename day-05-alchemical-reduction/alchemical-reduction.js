@@ -1,29 +1,20 @@
 var _ = require("lodash");
 
-const alchemicalReduction = (input) => {
-  if(input.length > 0) {
-    let splitInput = input.split("");
+const peek = stack => stack[stack.length - 1]
 
-    for (let i = 0; i < splitInput.length; i++) {
-      let nextIndex = (i === splitInput.length)? splitInput[0] : splitInput[i+1];
-      let currentNext = splitInput[i] + nextIndex;
-      let currentNextUppercase = _.toUpper(currentNext);
-      let ucCurrent = _.upperCase(splitInput[i]);
-      let ucNext = _.upperCase(nextIndex);
+const alchemicalReduction = input => {
+    const stack = []
 
-      if((splitInput[i] === _.toUpper(splitInput[i]) && nextIndex !== _.toUpper(nextIndex))
-      ||(splitInput[i] === _.toLower(splitInput[i]) && nextIndex !== _.toLower(nextIndex))) {
-        const removedList = _.remove(splitInput, function(n) {
-            return n === splitInput[i] && n === splitInput[i + 1];
-          });
-          const newString = removedList.join();
-    
-          return alchemicalReduction(newString);
-      }
-    }
-  }
-  console.log("input length = ", input.length);
-  return input.length;
-};
+    input.split('').forEach(char => {
+        // XOR of A and a, B and b, etc is 32
+        if (!stack.length || (peek(stack).charCodeAt() ^ char.charCodeAt()) !== 32) {
+            stack.push(char)
+        } else {
+            stack.pop()
+        }
+    })
+
+    return stack.join('')
+}
 
 module.exports = alchemicalReduction;

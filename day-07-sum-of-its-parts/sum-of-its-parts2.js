@@ -3,6 +3,7 @@ var _ = require("lodash");
 let instructions = {};
 let numOfSteps = 0;
 let workingSteps = [];
+let threads = 5;
 
 const sumOfItsParts = input => {
   input.split("\n").forEach(element => {
@@ -22,7 +23,7 @@ const sumOfItsParts = input => {
     }
   });
 
-  while (_.keys(instructions).length > 0) {
+  while (_.keys(instructions).length > 0 || workingSteps.length > 0) {
     if (workingSteps.length > 0) {
       workingSteps.map(element => {
         element[1] = element[1] - 1;
@@ -30,6 +31,7 @@ const sumOfItsParts = input => {
           instructions = removeConstraints(instructions, element[0]);
         }
       });
+      numOfSteps++;
     }
 
     _.remove(workingSteps, function(n) {
@@ -38,14 +40,14 @@ const sumOfItsParts = input => {
 
     let nextSteps = findNextStep(instructions);
     if (nextSteps.length > 0) {
-      for (let i = 0; i < 5; i++) {
+      let threadCount = threads - workingSteps.length;
+      for (let i = 0; i < threadCount; i++) {
         if (nextSteps[i] !== undefined) {
           instructions = _.omit(instructions, nextSteps[i]);
           workingSteps.push([nextSteps[i], alphabetMap[nextSteps[i]]]);
         }
       }
     }
-    numOfSteps++;
   }
   return numOfSteps;
 };
